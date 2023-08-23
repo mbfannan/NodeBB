@@ -86,7 +86,7 @@ const getUserDataByUID = async (callerUid: number, uid: number): Promise<UserDat
         userData = await user.hidePrivateData(userData, callerUid) as UserData;
         return userData;
     }
-};
+};//
 async function getUserDataByField(callerUid: number, field: string, fieldValue: string): Promise<UserData | null> {
     let uid: number | null = null;
     if (field === 'uid') {
