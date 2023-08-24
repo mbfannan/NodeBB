@@ -63,7 +63,7 @@ function find_compiled_js() {
                 },
                 rules: {
                     "no-use-before-define": "off",
-                    "@typescript-eslint/no-use-before-define": "error",			
+                    "@typescript-eslint/no-use-before-define": "error",                    	
                 }
             }
         ]
