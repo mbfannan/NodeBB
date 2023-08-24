@@ -107,7 +107,6 @@ userController.exportProfile = function (req, res, next) {
         sendExport(`${res.locals.uid}_profile.json`, 'application/json', res, next);
     });
 };
-// DEPRECATED; Remove in NodeBB v3.0.0
 function sendExport(filename, type, res, next) {
     winston_1.default.warn('[users/export] Access via page API is deprecated, use GET /api/v3/users/:uid/exports/:type instead.');
     try {

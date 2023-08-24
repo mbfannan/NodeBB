@@ -1,13 +1,14 @@
 import path from 'path';
 import winston from 'winston';
-
+import { Request, Response, NextFunction } from 'express';
 import user from '../user';
 import privileges from '../privileges';
 import accountHelpers from './accounts/helpers';
-import { Request, Response, NextFunction } from 'express';
 
+interface ExtendedRequest extends Request {
+    uid?: string; // or whatever the type of uid is
+  }
 const userController = module.exports;
-
 userController.getCurrentUser = async function (req, res) {
     if (!req.loggedIn) {
         return res.status(401).json('not-authorized');
@@ -29,7 +30,7 @@ userController.getUserByEmail = async function (req, res, next) {
     await byType('email', req, res, next);
 };
 
-async function byType(type, req, res, next) {
+async function byType(type: string, req: ExtendedRequest, res: Response, next: NextFunction): Promise<void> {
     const userData = await userController.getUserDataByField(req.uid, type, req.params[type]);
     if (!userData) {
         return next();
